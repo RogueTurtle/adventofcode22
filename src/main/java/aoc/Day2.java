@@ -7,6 +7,7 @@ public class Day2 {
     public static void main(String[] args) {
         Day2 d2 = new Day2();
         System.out.println(d2.part1());
+        System.out.println(d2.part2());
     }
 
     public Integer part1() {
@@ -54,6 +55,61 @@ public class Day2 {
                         score += 2;
                     } else if (friend.equals("Z")) {//Scissors
                         score += 6;
+                    }
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return score;
+    }
+
+    public Integer part2() {
+        /*
+         * A = Rock = 1
+         * B = Paper = 2
+         * C = Scissors = 3
+         * Win = Z = 6
+         * Draw = Y = 3
+         * Loss = X = 0
+         */
+        String line = "";
+        String[] input;
+        String opp = "";
+        String friend = "";
+        Integer score = 0;
+        try (FileReader fr = new FileReader("input/Day2.csv");
+        BufferedReader br =new BufferedReader(fr)) {
+            while (br.ready()) {
+                line = br.readLine();
+                input = line.split(" ");
+                opp = input[0];
+                friend = input[1];
+
+                if (opp.equals("A")) { //Rock
+                    if (friend.equals("X")) { //Lose
+                        score += 3;
+                    } else if (friend.equals("Y")) { //Draw
+                        score += 4;
+                    } else if (friend.equals("Z")) {//Win
+                        score += 8;
+                    }
+                } else if (opp.equals("B")) { //Paper
+                    if (friend.equals("X")) {//Lose
+                        score += 1;
+                    } else if (friend.equals("Y")) {//Draw
+                        score += 5;
+                    } else if (friend.equals("Z")) {//Win
+                        score += 9;
+                    } 
+                } else if (opp.equals("C")) {//Scissors
+                    if (friend.equals("X")) {//Lose
+                        score += 2;
+                    } else if (friend.equals("Y")) {//Draw
+                        score += 6;
+                    } else if (friend.equals("Z")) {//Win
+                        score += 7;
                     }
                 }
             }
