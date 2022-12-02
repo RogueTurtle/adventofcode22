@@ -1,4 +1,4 @@
-package src.main.java.aoc;
+package aoc;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
