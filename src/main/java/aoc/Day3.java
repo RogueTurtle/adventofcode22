@@ -12,6 +12,7 @@ public class Day3 {
     public static void main(String[] args) {
         Day3 d3 = new Day3();
         System.out.println(d3.part1());
+        System.out.println(d3.part2());
     }
 
     public Integer part1() {
@@ -48,4 +49,43 @@ public class Day3 {
         }
         return resultBuilder.toString();
     }
+
+    public String findCommonChars(String a, String b, String c) {
+        StringBuilder resultBuilder = new StringBuilder();
+        Set<Character> charsMap = new HashSet<Character>();
+        for (int i = 0; i < a.length(); i++) {
+            char ch = a.charAt(i); //a and b are the two words given by the user
+             if (b.indexOf(ch) != -1 && c.indexOf(ch) != -1){
+                 charsMap.add(Character.valueOf(ch));
+             }
+        }
+
+        Iterator<Character> charsIterator = charsMap.iterator();
+        while(charsIterator.hasNext()) {
+            resultBuilder.append(charsIterator.next().charValue());
+        }
+        return resultBuilder.toString();
+    }
+
+public Integer part2() {
+    Integer output = 0;
+    String line1 = "";
+    String line2 = "";
+    String line3 = "";
+    String commonChar = "";
+    
+    try (FileReader fr = new FileReader("input/Day3.csv"); BufferedReader br = new BufferedReader(fr)) {
+        while (br.ready()) {
+            line1 = br.readLine();
+            line2 = br.readLine();
+            line3 = br.readLine();
+            String[] lines = {line1,line2,line3};
+            commonChar = findCommonChars(line1, line2, line3);
+            output += Arrays.asList(chars).indexOf(commonChar) + 1;
+        }
+    } catch (Exception e) {
+        e.printStackTrace();
+    }
+    return output;
+}
 }
