@@ -23,3 +23,5 @@ test.*
 # Dealing with Mac users
 .DS_Store
 
+# ignoring input
+/input
